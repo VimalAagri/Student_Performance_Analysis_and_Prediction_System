@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SPAAPS</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>SPAAPS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+            <div >
+                <a href="{% url 'student' %}" class="btn-signup">Students</a>
+                <a href="{% url 'educator' %}" class="btn-signup">Educator</a>
+            </div>
+        </nav>
+    </header>
+
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 id="welcome-message" class="home-message">Welcome to <br><img src="../static/photos/front-bg2.jpg" id="front-bg2">the World of AI</h1>
+            <p id="description" class="home-message">AI, or artificial intelligence, refers to the simulation of human intelligence in machines that are programmed to think and learn like humans.</p>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div id="about-content">
+            <p>
+                Welcome to the <strong>Student Performance Prediction and Analysis System</strong>, a pioneering platform dedicated to enhancing educational outcomes through the power of data analytics. Our mission is to provide valuable insights into student performance, helping learners and educators alike make informed decisions that foster academic success. By leveraging advanced algorithms and machine learning techniques, we analyze a wide range of data points—including attendance, grades, and engagement metrics—to deliver personalized performance predictions.
+            </p>
+            
+            <h3>How It Works</h3>
+            <p>
+                Our system operates on a user-friendly interface that allows both students and educators to interact seamlessly with the data. Here's how it works:
+            </p>
+            <ul>
+                <li><strong>Data Collection:</strong> Users input historical academic data and other relevant information, such as attendance records and participation in extracurricular activities.</li>
+                <li><strong>Data Analysis:</strong> Using robust machine learning algorithms, the system analyzes the collected data to identify patterns and correlations that influence student performance.</li>
+                <li><strong>Performance Prediction:</strong> Based on the analysis, the platform generates accurate predictions of future academic performance, highlighting areas where students may excel and where they may need additional support.</li>
+                <li><strong>Actionable Insights:</strong> The system provides actionable recommendations for students and educators, enabling targeted interventions and personalized learning plans that cater to individual needs.</li>
+                <li><strong>User-Friendly Dashboard:</strong> Our intuitive dashboard presents the data in visually appealing formats, making it easy to interpret and act upon the insights provided.</li>
+            </ul>
+            
+            <p>
+                Through our innovative approach, we aim to transform the educational landscape by empowering students to reach their full potential and equipping educators with the tools they need to support their learners effectively.
+            </p>
+
+        </div>
+    </section>
+    
+
+<!-- Services Section -->
+<section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="image-grid">
+        <div class="service-item">
+            <img src="../static/photos/item1.png" alt="Performance Prediction">
+            <div class="service-title">Performance Prediction</div>
+            <div class="overlay">We analyze student performance trends and predict future outcomes.</div>
+        </div>
+        <div class="service-item">
+            <img src="../static/photos/item2.png" alt="Data Analytics">
+            <div class="service-title">Data Analytics</div>
+            <div class="overlay">Comprehensive data analytics to improve academic performance.</div>
+        </div>
+        <div class="service-item">
+            <img src="../static/photos/item3.png" alt="Personalized Learning Plans">
+            <div class="service-title">Personalized Learning Plans</div>
+            <div class="overlay">Tailored learning plans for students based on performance insights.</div>
+        </div>
+        <div class="service-item">
+            <img src="../static/photos/item4.jpeg" alt="Interactive Dashboard">
+            <div class="service-title">Interactive Dashboard</div>
+            <div class="overlay">Real-time data visualization through interactive dashboards.</div>
+        </div>
+        <div class="service-item">
+            <img src="../static/photos/item5.jpg" alt="Reporting and Recommendations">
+            <div class="service-title">Reporting and Recommendations</div>
+            <div class="overlay">Detailed reports and actionable recommendations for educators.</div>
+        </div>
+        <div class="service-item">
+            <img src="../static/photos/item8.jpeg" alt="Performance Tracking">
+            <div class="service-title">Performance Tracking</div>
+            <div class="overlay">Track students’ progress and monitor academic performance.</div>
+        </div>
+    </div>
+</section>
+
+    <section id="feedback" class="feedback-section">
+        <h2>Feedback Form</h2>
+        <form action="/submit-feedback" method="POST" class="feedback-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" placeholder="Write your feedback here..." required></textarea>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Student Performance Analysis and Prediction System (SPAAPS)</h3>
+                <p>Empowering students and organizations with AI-based performance prediction and analytics.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#Student Page">Student Page</a></li>
+                    <li><a href="#Educator Page">Educator Page </a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="../static/photos/facebook_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/photos/twitter_logo.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/photos/linkedIn_logo.png" alt="LinkedIn"></a>
+                <a href="#"><img src="../static/photos/instagram_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../static/photos/gmail_logo.png" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Performance Prediction. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

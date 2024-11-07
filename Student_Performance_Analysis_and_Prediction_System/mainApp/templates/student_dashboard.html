@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+
+    <style>
+                /* Basic styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Grid layout for charts */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Styling each chart container */
+        .chart-grid div {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            canvas {
+                height: 250px;
+            }
+        }
+
+        /* Grid Layout for Small Tables */
+        .table-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Individual Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #34495e;
+            color: #ecf0f1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        th {
+            background-color: #1abc9c;
+            font-size: 1.2em;
+            padding: 12px;
+            text-align: left;
+            color: #ecf0f1;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #7f8c8d;
+        }
+
+        /* Highlighted Rows */
+        tr:nth-child(even) {
+            background-color: #3b5360;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #34495e;
+        }
+
+        /* Table Headers */
+        th[colspan="2"] {
+            text-align: center;
+            background-color: #16a085;
+        }
+
+        /* Text and Layout Adjustments */
+        h1, h2, h3 {
+            color: #1abc9c;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        /* ID Styling for Hidden Content */
+        #passFailData {
+            display: none; /* Keeps it hidden for layout purposes */
+        }
+
+        /* Responsiveness and Grid Behavior */
+        @media screen and (max-width: 768px) {
+            .table-container {
+                grid-template-columns: 1fr; /* Stacks the tables on small screens */
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+  
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>SPAAPS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#feedback">Feedback</a></li>
+            </ul>
+            <div >
+                <a style="background-color: #62d6e5;" href="{% url 'student' %}" class="btn-signup">Students</a>
+                <a href="{% url 'educator' %}" class="btn-signup">Educator</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <h1 style="margin-top: 100px;">Welcome.. {{Name}} 🙋‍♂️🙋‍♂️🙋‍♂️🙋‍♂️</h1>
+        <div style="color:white; display: none;" >
+        
+            <h2>Attendance and Average Scores</h2>
+            <p id="attendance"><strong>Attendance:</strong> {{ totalAttendance }}</p>
+            <p id="englishAverage"><strong>English Average:</strong> {{ totalEnglishAverage }}</p>
+            <p id="mathsAverage"><strong>Maths Average:</strong> {{ totalMathsAverage }}</p>
+            <p id="scienceAverage"><strong>Science Average:</strong> {{ totalScienceAverage }}</p>
+            <p id="hindiAverage"><strong>Hindi Average:</strong> {{ totalHindiAverage }}</p>
+            <p id="computerAverage"><strong>Computer Average:</strong> {{ totalComputerAverage }}</p>
+        
+            <h2>Test Results</h2>
+            <p id="test1Total"><strong>Test 1 Total:</strong> {{ test1_Total }}</p>
+            <p id="test2Total"><strong>Test 2 Total:</strong> {{ test2_Total }}</p>
+            <p id="test3Total"><strong>Test 3 Total:</strong> {{ test3_Total }}</p>
+            <p id="test4Total"><strong>Test 4 Total:</strong> {{ test4_Total }}</p>
+            <p id="test5Total"><strong>Test 5 Total:</strong> {{ test5_Total }}</p>
+        
+            <h2>Class Averages</h2>
+            <p id="englishClassAvg"><strong>English Class Average:</strong> {{ english_class_avg }}</p>
+            <p id="mathsClassAvg"><strong>Maths Class Average:</strong> {{ maths_class_avg }}</p>
+            <p id="hindiClassAvg"><strong>Hindi Class Average:</strong> {{ hindi_class_avg }}</p>
+            <p id="scienceClassAvg"><strong>Science Class Average:</strong> {{ science_class_avg }}</p>
+            <p id="computerClassAvg"><strong>Computer Class Average:</strong> {{ computer_class_avg }}</p>
+        
+            <h2>Attendance Record</h2>
+            <p id="englishAttendance"><strong>English Attendance:</strong> {{ english_attendance }}%</p>
+            <p id="mathsAttendance"><strong>Maths Attendance:</strong> {{ maths_attendance }}%</p>
+            <p id="hindiAttendance"><strong>Hindi Attendance:</strong> {{ hindi_attendance }}%</p>
+            <p id="scienceAttendance"><strong>Science Attendance:</strong> {{ science_attendance }}%</p>
+            <p id="computerAttendance"><strong>Computer Attendance:</strong> {{ computer_attendance }}%</p>
+
+            <h2>Goal Scores</h2>
+            <p id="englishGoal"><strong>English Goal Score:</strong> {{ english_Goal }}</p>
+            <p id="mathsGoal"><strong>Maths Goal Score:</strong> {{ maths_Goal }}</p>
+            <p id="hindiGoal"><strong>Hindi Goal Score:</strong> {{ hindi_Goal }}</p>
+            <p id="scienceGoal"><strong>Science Goal Score:</strong> {{ science_Goal }}</p>
+            <p id="computerGoal"><strong>Computer Goal Score:</strong> {{ computer_Goal }}</p>
+        
+            <h2>Predicted Results and Overall Performance</h2>
+            <h3>Predicted Results</h3>
+            <p><strong>Total Percentage:</strong> <span id="totalPercentage">{{ total_percentage }}</span>%</p>
+            <p><strong>Pass/Fail:</strong> <span id="passFail">{{ pass_fail }}</span></p>
+
+        
+            <!-- Store pass and fail probabilities in data- attributes -->
+            <div id="passFailData" 
+            data-pass="{{ pass_probability }}" 
+            data-fail="{{ fail_probability}}">
+            
+            </div>
+            
+        </div>
+    
+    
+        
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th colspan="2">Attendance and Average Scores</th>
+                </tr>
+                <tr>
+                    <td>Attendance:</td>
+                    <td>{{ totalAttendance }}</td>
+                </tr>
+                <tr>
+                    <td>English Average:</td>
+                    <td>{{ totalEnglishAverage }}</td>
+                </tr>
+                <tr>
+                    <td>Maths Average:</td>
+                    <td>{{ totalMathsAverage }}</td>
+                </tr>
+                <tr>
+                    <td>Science Average:</td>
+                    <td>{{ totalScienceAverage }}</td>
+                </tr>
+                <tr>
+                    <td>Hindi Average:</td>
+                    <td>{{ totalHindiAverage }}</td>
+                </tr>
+                <tr>
+                    <td>Computer Average:</td>
+                    <td>{{ totalComputerAverage }}</td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <th colspan="2">Test Results</th>
+                </tr>
+                <tr>
+                    <td>Test 1 Total:</td>
+                    <td>{{ test1_Total }}</td>
+                </tr>
+                <tr>
+                    <td>Test 2 Total:</td>
+                    <td>{{ test2_Total }}</td>
+                </tr>
+                <tr>
+                    <td>Test 3 Total:</td>
+                    <td>{{ test3_Total }}</td>
+                </tr>
+                <tr>
+                    <td>Test 4 Total:</td>
+                    <td>{{ test4_Total }}</td>
+                </tr>
+                <tr>
+                    <td>Test 5 Total:</td>
+                    <td>{{ test5_Total }}</td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <th colspan="2">Class Averages</th>
+                </tr>
+                <tr>
+                    <td>English Class Average:</td>
+                    <td>{{ english_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td>Maths Class Average:</td>
+                    <td>{{ maths_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td>Hindi Class Average:</td>
+                    <td>{{ hindi_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td>Science Class Average:</td>
+                    <td>{{ science_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td>Computer Class Average:</td>
+                    <td>{{ computer_class_avg }}</td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <th colspan="2">Attendance Record</th>
+                </tr>
+                <tr>
+                    <td>English Attendance:</td>
+                    <td>{{ english_attendance }}%</td>
+                </tr>
+                <tr>
+                    <td>Maths Attendance:</td>
+                    <td>{{ maths_attendance }}%</td>
+                </tr>
+                <tr>
+                    <td>Hindi Attendance:</td>
+                    <td>{{ hindi_attendance }}%</td>
+                </tr>
+                <tr>
+                    <td>Science Attendance:</td>
+                    <td>{{ science_attendance }}%</td>
+                </tr>
+                <tr>
+                    <td>Computer Attendance:</td>
+                    <td>{{ computer_attendance }}%</td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <th colspan="2">Goal Scores</th>
+                </tr>
+                <tr>
+                    <td>English Goal Score:</td>
+                    <td>{{ english_Goal }}</td>
+                </tr>
+                <tr>
+                    <td>Maths Goal Score:</td>
+                    <td>{{ maths_Goal }}</td>
+                </tr>
+                <tr>
+                    <td>Hindi Goal Score:</td>
+                    <td>{{ hindi_Goal }}</td>
+                </tr>
+                <tr>
+                    <td>Science Goal Score:</td>
+                    <td>{{ science_Goal }}</td>
+                </tr>
+                <tr>
+                    <td>Computer Goal Score:</td>
+                    <td>{{ computer_Goal }}</td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <th colspan="2">Predicted Results and Overall Performance</th>
+                </tr>
+                <tr>
+                    <td>Total Percentage:</td>
+                    <td>{{ total_percentage }}%</td>
+                </tr>
+                <tr>
+                    <td>Pass/Fail:</td>
+                    <td>{{ pass_fail }}</td>
+                </tr>
+            </table>
+        </div>
+        
+
+    
+    
+   <br><br><br>
+    <h1 style="color: white; border: solid;">Student Performance Dashboard</h1>
+
+        <!-- Grid container for all charts -->
+
+        <h2>Predication Charts</h2>
+        <br>
+        <div class="chart-grid">
+            <div>
+                <canvas id="totalPercentageChart"></canvas>
+            </div>
+
+            <div>
+                <canvas id="passFailChart"></canvas>
+            </div>
+
+            <div>
+                <canvas id="passFailChartPercent"></canvas>
+            </div>
+        
+        </div>
+        
+        
+        <br> <br>
+        <h2>Performance Analysis Charts</h2>
+        br>
+        <div class="chart-grid">
+            <div>
+                <canvas id="performanceSummaryChart"></canvas>
+            </div>
+            <div>
+                <canvas id="performanceTrendChart"></canvas>
+            </div>
+
+            <div>
+                <canvas id="subjectWiseChart"></canvas>
+            </div>
+            <div>
+                <canvas id="attendancePerformanceChart"></canvas>
+            </div>
+ 
+            <div>
+                <canvas id="improvementGoalsChart"></canvas>
+            </div>
+
+            <div>
+                <canvas id="classComparisonChart"></canvas>
+            </div>
+
+
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"> </script>
+
+    <script>
+        // Fetch values from HTML elements by their IDs
+        const totalPercentage = parseFloat(document.getElementById('totalPercentage').textContent);
+        const passFail = document.getElementById('passFail').textContent === 'Pass' ? 1 : 0;
+    // Total Percentage Bar Chart
+        const ctx2 = document.getElementById('totalPercentageChart').getContext('2d');
+            const totalPercentageChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Percentage'],
+                    datasets: [{
+                        label: 'Percentage',
+                        data: [totalPercentage],
+                        backgroundColor: ['#2196f3'],
+                        borderColor: ['#1976d2'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                    title: {
+                        display: true,
+                        text: 'Predication Percentage'
+                    }
+                }
+                }
+            });
+
+        ctx1 = document.getElementById('passFailChart').getContext('2d');
+        const passFailChart = new Chart(ctx1, {
+            type: 'pie', // Use 'pie' instead of 'doughnut'
+            data: {
+                labels: ['Pass', 'Fail'],
+                datasets: [{
+                    data: [passFail, 1 - passFail],
+                    backgroundColor: ['#4caf50', '#f44336'], // Green for Pass, Red for Fail
+                    borderColor: ['#3e8e41', '#c62828'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {  title: {
+                        display: true,
+                        text: 'Pass/Fail Predication'
+                    },
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + (context.raw * 100) + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Fetch pass and fail probabilities from the data attributes
+        const passProb = parseFloat(document.getElementById('passFailData').getAttribute('data-pass'));
+        const failProb = parseFloat(document.getElementById('passFailData').getAttribute('data-fail'));
+
+        const ctx = document.getElementById('passFailChartPercent').getContext('2d');
+        const passFailChartPercent = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pass', 'Fail'],
+                datasets: [{
+                    data: [passProb, failProb],
+                    backgroundColor: ['#4caf50', '#f44336'],
+                    borderColor: ['#3e8e41', '#c62828'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Chances of Pass (%)'
+                    },
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw.toFixed(2) + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // Performance Summary Chart (Bar Chart)
+        // Fetch values from HTML elements by their IDs
+            const englishAverage = parseFloat(document.getElementById('englishAverage').textContent.split(': ')[1]);
+            const mathsAverage = parseFloat(document.getElementById('mathsAverage').textContent.split(': ')[1]);
+            const scienceAverage = parseFloat(document.getElementById('scienceAverage').textContent.split(': ')[1]);
+            const hindiAverage = parseFloat(document.getElementById('hindiAverage').textContent.split(': ')[1]);
+            const computerAverage = parseFloat(document.getElementById('computerAverage').textContent.split(': ')[1]);
+
+            // Create Performance Summary Chart
+            const performanceSummaryCtx = document.getElementById('performanceSummaryChart').getContext('2d');
+            new Chart(performanceSummaryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Math', 'Science', 'Hindi', 'English', 'Computer'],
+                    datasets: [{
+                        label: 'Average Marks',
+                        data: [mathsAverage, scienceAverage, hindiAverage, englishAverage, computerAverage],
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Performance Summary by Subject'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+        // Fetch values from HTML elements by their IDs
+            const test1Total = parseFloat(document.getElementById('test1Total').textContent.split(': ')[1]);
+            const test2Total = parseFloat(document.getElementById('test2Total').textContent.split(': ')[1]);
+            const test3Total = parseFloat(document.getElementById('test3Total').textContent.split(': ')[1]);
+            const test4Total = parseFloat(document.getElementById('test4Total').textContent.split(': ')[1]);
+            const test5Total = parseFloat(document.getElementById('test5Total').textContent.split(': ')[1]);
+
+            // Create Performance Trend Line Chart
+            const performanceTrendCtx = document.getElementById('performanceTrendChart').getContext('2d');
+            new Chart(performanceTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
+                    datasets: [{
+                        label: 'Performance Trend',
+                        data: [test1Total, test2Total, test3Total, test4Total, test5Total],
+                        fill: false,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Performance Trend Over Time'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+       
+
+        // Subject-wise Performance Analysis (Pie Chart)
+        const subjectWiseCtx = document.getElementById('subjectWiseChart').getContext('2d');
+        new Chart(subjectWiseCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Math', 'Science', 'Hindi', 'English', 'Computer'],
+                datasets: [{
+                    data: [mathsAverage, scienceAverage, hindiAverage, englishAverage, computerAverage],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Subject-wise Performance'
+                    }
+                }
+            }
+        });
+
+                // Attendance vs Performance (Scatter Plot)
+
+            // Retrieve attendance values from HTML elements
+        const englishAttendance = parseInt(document.getElementById('englishAttendance').innerText.split(': ')[1]);
+        const mathsAttendance = parseInt(document.getElementById('mathsAttendance').innerText.split(': ')[1]);
+        const hindiAttendance = parseInt(document.getElementById('hindiAttendance').innerText.split(': ')[1]);
+        const scienceAttendance = parseInt(document.getElementById('scienceAttendance').innerText.split(': ')[1]);
+        const computerAttendance = parseInt(document.getElementById('computerAttendance').innerText.split(': ')[1]);
+
+        // Populate data for Attendance vs Performance
+        const attendancePerformanceData = [
+            { x: englishAttendance, y: englishAverage },
+            { x: mathsAttendance, y: mathsAverage },
+            { x: hindiAttendance, y: hindiAverage },
+            { x: scienceAttendance, y: scienceAverage },
+            { x: computerAttendance, y: computerAverage }
+        ];
+
+        const attendancePerformanceCtx = document.getElementById('attendancePerformanceChart').getContext('2d');
+        new Chart(attendancePerformanceCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Attendance vs Performance',
+                    data: attendancePerformanceData,
+                    backgroundColor: 'rgba(255, 99, 132, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Attendance vs Performance'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Attendance (%)'
+                        },
+                        min: 0,
+                        max: 100
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Marks (%)'
+                        },
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        
+        // Fetch values from HTML elements by their IDs for Goal Scores
+    const englishGoal = parseFloat(document.getElementById('englishGoal').textContent.split(': ')[1]);
+    const mathsGoal = parseFloat(document.getElementById('mathsGoal').textContent.split(': ')[1]);
+    const hindiGoal = parseFloat(document.getElementById('hindiGoal').textContent.split(': ')[1]);
+    const scienceGoal = parseFloat(document.getElementById('scienceGoal').textContent.split(': ')[1]);
+    const computerGoal = parseFloat(document.getElementById('computerGoal').textContent.split(': ')[1]);
+
+    // Fetch current scores dynamically (assuming these values are also available similarly to goal scores)
+    const currentEnglish = 75;  // Replace with dynamic fetch if available
+    const currentMaths = 85;
+    const currentHindi = 90;
+    const currentScience = 78;
+    const currentComputer = 88;
+
+    // Improvement Goals Bar Chart
+    const improvementGoalsCtx = document.getElementById('improvementGoalsChart').getContext('2d');
+    new Chart(improvementGoalsCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Math', 'Science', 'Hindi', 'English', 'Computer'],
+            datasets: [
+                {
+                    label: 'Current Marks',
+                    data: [currentMaths, currentScience, currentHindi, currentEnglish, currentComputer],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Goal Marks',
+                    data: [mathsGoal, scienceGoal, hindiGoal, englishGoal, computerGoal],
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Improvement Goals by Subject'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+        // Fetch class average values from HTML elements
+        const englishClassAvg = parseFloat(document.getElementById('englishClassAvg').textContent.split(': ')[1]);
+        const mathsClassAvg = parseFloat(document.getElementById('mathsClassAvg').textContent.split(': ')[1]);
+        const hindiClassAvg = parseFloat(document.getElementById('hindiClassAvg').textContent.split(': ')[1]);
+        const scienceClassAvg = parseFloat(document.getElementById('scienceClassAvg').textContent.split(': ')[1]);
+        const computerClassAvg = parseFloat(document.getElementById('computerClassAvg').textContent.split(': ')[1]);
+
+        // Radar Chart for Student vs Class Average Comparison
+        const classComparisonCtx = document.getElementById('classComparisonChart').getContext('2d');
+        new Chart(classComparisonCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Math', 'Science', 'Hindi', 'English', 'Computer'],
+                datasets: [
+                    {
+                        label: 'Student Marks',
+                        data: [mathsAverage, scienceAverage, hindiAverage, englishAverage, computerAverage],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Class Average',
+                        data: [mathsClassAvg, scienceClassAvg, hindiClassAvg, englishClassAvg, computerClassAvg],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Student vs Class Average Comparison'
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+    
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Student Performance Analysis and Prediction System (SPAAPS)</h3>
+                <p>Empowering students and organizations with AI-based performance prediction and analytics.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#Student Page">Student Page</a></li>
+                    <li><a href="#Educator Page">Educator Page </a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="../static/photos/facebook_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/photos/twitter_logo.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/photos/linkedIn_logo.png" alt="LinkedIn"></a>
+                <a href="#"><img src="../static/photos/instagram_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../static/photos/gmail_logo.png" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Performance Prediction. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

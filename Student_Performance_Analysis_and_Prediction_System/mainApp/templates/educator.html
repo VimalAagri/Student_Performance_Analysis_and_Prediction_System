@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Educator</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/educator.css' %}">
+</head>
+<body>
+  
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>SPAAPS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#feedback">Feedback</a></li>
+            </ul>
+            <div >
+                <a href="{% url 'student' %}" class="btn-signup">Students</a>
+                <a style="background-color: #62d6e5;" href="{% url 'educator' %}" class="btn-signup" >Educator</a>
+            </div>
+        </nav>
+    </header>
+
+ 
+    <div class="container">
+        <h1>Upload an Excel File</h1>
+        <form method="post" enctype="multipart/form-data" action="{% url 'educator_dashboard' %} "">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="file">Select an Excel file:</label>
+                <input type="file" id="file" name="file" accept=".xlsx, .xls">
+            </div>
+            <button type="submit" class="btn-submit">Upload</button>
+        </form>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Student Performance Analysis and Prediction System (SPAAPS)</h3>
+                <p>Empowering students and organizations with AI-based performance prediction and analytics.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#Student Page">Student Page</a></li>
+                    <li><a href="#Educator Page">Educator Page </a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="../static/photos/facebook_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/photos/twitter_logo.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/photos/linkedIn_logo.png" alt="LinkedIn"></a>
+                <a href="#"><img src="../static/photos/instagram_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../static/photos/gmail_logo.png" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Performance Prediction. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

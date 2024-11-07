@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/educator.css' %}">
+    <style>
+
+
+        .form_container {
+            background-color: rgba(251, 246, 246, 0.1);
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color : white;
+        }
+
+        .form_container h1,
+        .form_container h2 {
+            text-align: center;
+            color: white;
+        }
+
+        .form_container form h3 {
+            margin-left: -20px;
+            margin-bottom: 10px;
+            color: #62d6e5;
+        }
+
+        .form_container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form_container input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .Tests {
+            margin-bottom: 20px;
+        }
+
+        .Tests h2 {
+            margin-bottom: 10px;
+        }
+
+        .other_details {
+            margin-top: 30px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            flex: 1;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-social a {
+            margin-right: 10px;
+        }
+
+        .footer-social img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>SPAAPS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#feedback">Feedback</a></li>
+            </ul>
+            <div>
+                <a style="background-color: #62d6e5;" href="{% url 'student' %}" class="btn-signup">Students</a>
+                <a href="{% url 'educator' %}" class="btn-signup">Educator</a>
+            </div>
+        </nav>
+    </header>
+
+    <br> <br> <br>
+    <div class="form_container">
+        <form method="post" action="{% url 'student_dashboard' %}">
+            {% csrf_token %}
+
+            <div>
+                Name : <input name="name" type="text" required>
+            </div>
+
+            <div>
+                Study Hours(per day) : <input name="study_Hours" type="text" required>
+            </div>
+
+            <div>
+                Stress Level(-1 to 1) : <input name="stress_Level" type="text" required>
+            </div>
+            
+            <h2>Test Marks</h2>
+
+            <div class="Tests">
+                <h3>Test 1:</h3>
+                English : <input name="english1" type="text" >
+                Maths : <input name="maths1" type="text" >
+                Science : <input name="science1" type="text" >
+                Hindi : <input name="hindi1" type="text" >
+                Computer : <input name="computer1" type="text" >
+            </div>
+
+            <div class="Tests">
+                <h3>Test 2:</h3>
+                English : <input name="english2" type="text" >
+                Maths : <input name="maths2" type="text" >
+                Science : <input name="science2" type="text" >
+                Hindi : <input name="hindi2" type="text" >
+                Computer : <input name="computer2" type="text" >
+            </div>
+
+            <div class="Tests">
+                <h3>Test 3:</h3>
+                English : <input name="english3" type="text">
+                Maths : <input name="maths3" type="text" >
+                Science : <input name="science3" type="text" >
+                Hindi : <input name="hindi3" type="text" >
+                Computer : <input name="computer3" type="text" >
+            </div>
+
+            <div class="Tests">
+                <h3>Test 4:</h3>
+                English : <input name="english4" type="text" >
+                Maths : <input name="maths4" type="text" >
+                Science : <input name="science4" type="text" >
+                Hindi : <input name="hindi4" type="text" >
+                Computer : <input name="computer4" type="text" >
+            </div>
+
+            <div class="Tests">
+                <h3>Test 5:</h3>
+                English : <input name="english5" type="text" >
+                Maths : <input name="maths5" type="text">
+                Science : <input name="science5" type="text">
+                Hindi : <input name="hindi5" type="text">
+                Computer : <input name="computer5" type="text">
+            </div>
+
+            <div class="other_details">
+                <h2>Attendance</h2>
+                English : <input name="englishAttendance" type="text" required>
+                Maths : <input name="mathsAttendance" type="text" required>
+                Science : <input name="scienceAttendance" type="text" required>
+                Hindi : <input name="hindiAttendance" type="text" required>
+                Computer : <input name="computerAttendance" type="text" required>
+                <br><br>
+
+                <h2>Class Average Score</h2>
+                English : <input name="englishAvg" type="text" >
+                Maths : <input name="mathsAvg" type="text" >
+                Science : <input name="scienceAvg" type="text" >
+                Hindi : <input name="hindiAvg" type="text" >
+                Computer : <input name="computerAvg" type="text" >
+                <br><br>
+                <h2>Your Goal Score</h2>
+                English : <input name="englishGoal" type="text" >
+                Maths : <input name="mathsGoal" type="text" >
+                Science : <input name="scienceGoal" type="text" >
+                Hindi : <input name="hindiGoal" type="text" >
+                Computer : <input name="computerGoal" type="text" >
+            </div>
+
+            <input type="submit" value="Submit" style="background-color: #62d6e5; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+        </form>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Student Performance Analysis and Prediction System (SPAAPS)</h3>
+                <p>Empowering students and organizations with AI-based performance prediction and analytics.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#Student Page">Student Page</a></li>
+                    <li><a href="#Educator Page">Educator Page </a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="../static/photos/facebook_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/photos/twitter_logo.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/photos/linkedIn_logo.png" alt="LinkedIn"></a>
+                <a href="#"><img src="../static/photos/instagram_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../static/photos/gmail_logo.png" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Performance Prediction. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

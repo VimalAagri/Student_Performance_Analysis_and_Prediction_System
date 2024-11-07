@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+
+    <style>
+                /* Basic styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Grid layout for charts */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Styling each chart container */
+        .chart-grid div {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            canvas {
+                height: 250px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+  
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>SPAAPS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#feedback">Feedback</a></li>
+            </ul>
+            <div >
+                <a style="background-color: #62d6e5;" href="{% url 'student' %}" class="btn-signup">Students</a>
+                <a href="{% url 'educator' %}" class="btn-signup">Educator</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <div style="color:white; display:none">
+            <h1>Welcome, {{ Name }}</h1>
+            
+            <h2>Attendance and Average Scores</h2>
+            <table>
+                <tr>
+                    <td><strong>Attendance:</strong></td>
+                    <td>{{ totalAttendance }}</td>
+                </tr>
+                <tr>
+                    <td><strong>English Average:</strong></td>
+                    <td>{{ totalEnglishAverage }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Maths Average:</strong></td>
+                    <td>{{ totalMathsAverage }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Science Average:</strong></td>
+                    <td>{{ totalScienceAverage }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Hindi Average:</strong></td>
+                    <td>{{ totalHindiAverage }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Computer Average:</strong></td>
+                    <td>{{ totalComputerAverage }}</td>
+                </tr>
+            </table>
+    
+            <h2>Test Results</h2>
+            <table>
+                <tr>
+                    <td><strong>Test 1 Total:</strong></td>
+                    <td>{{ test1_Total }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Test 2 Total:</strong></td>
+                    <td>{{ test2_Total }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Test 3 Total:</strong></td>
+                    <td>{{ test3_Total }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Test 4 Total:</strong></td>
+                    <td>{{ test4_Total }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Test 5 Total:</strong></td>
+                    <td>{{ test5_Total }}</td>
+                </tr>
+            </table>
+    
+            <h2>Class Averages</h2>
+            <table>
+                <tr>
+                    <td><strong>English Class Average:</strong></td>
+                    <td>{{ english_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Maths Class Average:</strong></td>
+                    <td>{{ maths_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Hindi Class Average:</strong></td>
+                    <td>{{ hindi_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Science Class Average:</strong></td>
+                    <td>{{ science_class_avg }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Computer Class Average:</strong></td>
+                    <td>{{ computer_class_avg }}</td>
+                </tr>
+            </table>
+    
+            <h2>Goal Scores</h2>
+            <table>
+                <tr>
+                    <td><strong>English Goal Score:</strong></td>
+                    <td>{{ english_Goal }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Maths Goal Score:</strong></td>
+                    <td>{{ maths_Goal }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Hindi Goal Score:</strong></td>
+                    <td>{{ hindi_Goal }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Science Goal Score:</strong></td>
+                    <td>{{ science_Goal }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Computer Goal Score:</strong></td>
+                    <td>{{ computer_Goal }}</td>
+                </tr>
+            </table>
+    
+            <h2>Overall Performance</h2>
+            <table>
+                <tr>
+                    <td><strong>Total Percentage:</strong></td>
+                    <td>{{ total_percentage }}%</td>
+                </tr>
+                <tr>
+                    <td><strong>Pass/Fail:</strong></td>
+                    <td>{{ pass_fail }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Pass Probability:</strong></td>
+                    <td>{{ pass_probability }}%</td>
+                </tr>
+                <tr>
+                    <td><strong>Fail Probability:</strong></td>
+                    <td>{{ fail_probability }}%</td>
+                </tr>
+            </table>
+    </div>
+   
+    <br><br><br><br>
+    <h1>Student Performance Dashboard</h1>
+
+            
+
+        <!-- Grid container for all charts -->
+       <!-- Add some basic styles for the grid and canvas responsiveness -->
+       <div class="chart-grid">
+        <div>
+            <canvas id="totalPercentageChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="passFailChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="performanceSummaryChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="performanceTrendChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="subjectWiseChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="attendancePerformanceChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="classComparisonChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="goalPerformanceChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="projectedPerformanceChart"></canvas>
+        </div>
+    
+        <div>
+            <canvas id="projectedScoreDistributionChart"></canvas>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Total Percentage Pie Chart
+        const totalPercentageCtx = document.getElementById('totalPercentageChart').getContext('2d');
+        new Chart(totalPercentageCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Pending'],
+                datasets: [{
+                    label: 'Total Percentage',
+                    data: [80, 20], // Example data
+                    backgroundColor: ['#36A2EB', '#FF6384'],
+                    borderColor: ['#36A2EB', '#FF6384'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Percentage Completion'
+                    }
+                }
+            }
+        });
+    
+        // Pass/Fail Pie Chart
+        const passFailCtx = document.getElementById('passFailChart').getContext('2d');
+        new Chart(passFailCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Pass', 'Fail'],
+                datasets: [{
+                    label: 'Pass/Fail Status',
+                    data: [90, 10], // Example data
+                    backgroundColor: ['#4CAF50', '#FF9800'],
+                    borderColor: ['#4CAF50', '#FF9800'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Pass/Fail Status'
+                    }
+                }
+            }
+        });
+    
+        // Performance Summary Bar Chart
+        const performanceSummaryCtx = document.getElementById('performanceSummaryChart').getContext('2d');
+        new Chart(performanceSummaryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Math', 'Science', 'English', 'History'], // Example subjects
+                datasets: [{
+                    label: 'Performance Summary',
+                    data: [85, 75, 90, 80], // Example scores
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Performance Summary by Subject'
+                    }
+                }
+            }
+        });
+    
+        // Performance Trend Line Chart
+        const performanceTrendCtx = document.getElementById('performanceTrendChart').getContext('2d');
+        new Chart(performanceTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // Example weeks
+                datasets: [{
+                    label: 'Performance Trend Over Weeks',
+                    data: [72, 75, 80, 78, 85], // Example data
+                    fill: false,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Performance Trend Over Time'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Performance (%)'
+                        }
+                    }
+                }
+            }
+        });
+    
+        // Subject Wise Performance Bar Chart
+        const subjectWiseCtx = document.getElementById('subjectWiseChart').getContext('2d');
+        new Chart(subjectWiseCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Math', 'Science', 'History', 'English', 'Computer'], // Example subjects
+                datasets: [{
+                    label: 'Subject Wise Average Marks',
+                    data: [75, 80, 85, 70, 90], // Example average marks
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Subject Wise Performance'
+                    }
+                }
+            }
+        });
+    
+        // Attendance vs Performance Scatter Chart
+        const attendancePerformanceCtx = document.getElementById('attendancePerformanceChart').getContext('2d');
+        new Chart(attendancePerformanceCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Attendance vs Performance',
+                    data: [
+                        { x: 90, y: 80 }, // Example data point (Attendance, Performance)
+                        { x: 85, y: 75 },
+                        { x: 80, y: 70 },
+                        { x: 95, y: 85 },
+                        { x: 70, y: 60 }
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Attendance vs Performance Analysis'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Attendance (%)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Performance (%)'
+                        }
+                    }
+                }
+            }
+        });
+    
+        // Class Comparison Radar Chart
+        const classComparisonCtx = document.getElementById('classComparisonChart').getContext('2d');
+        new Chart(classComparisonCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Math', 'Science', 'English', 'History'], // Example subjects
+                datasets: [{
+                    label: 'Class A',
+                    data: [85, 70, 75, 80], // Example data for Class A
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Class B',
+                    data: [80, 60, 90, 85], // Example data for Class B
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Class Comparison'
+                    }
+                }
+            }
+        });
+    
+        // Goal Performance Bar Chart
+        const goalPerformanceCtx = document.getElementById('goalPerformanceChart').getContext('2d');
+        new Chart(goalPerformanceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Goal 1', 'Goal 2', 'Goal 3'], // Example goals
+                datasets: [{
+                    label: 'Performance vs Goals',
+                    data: [80, 70, 85], // Example goal performance
+                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Goal Performance'
+                    }
+                }
+            }
+        });
+    
+        // Projected Performance Line Chart
+        const projectedPerformanceCtx = document.getElementById('projectedPerformanceChart').getContext('2d');
+        new Chart(projectedPerformanceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // Example weeks
+                datasets: [{
+                    label: 'Projected Performance',
+                    data: [70, 75, 80, 85], // Example projected data
+                    fill: false,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Projected Performance'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Performance (%)'
+                        }
+                    }
+                }
+            }
+        });
+    
+        // Projected Score Distribution Histogram
+        const projectedScoreDistributionCtx = document.getElementById('projectedScoreDistributionChart').getContext('2d');
+        new Chart(projectedScoreDistributionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['50-60', '60-70', '70-80', '80-90'], // Example score ranges
+                datasets: [{
+                    label: 'Projected Score Distribution',
+                    data: [10, 15, 30, 45], // Example distribution
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Projected Score Distribution'
+                    }
+                }
+            }
+        });
+    </script>
+    
+
+    
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Student Performance Analysis and Prediction System (SPAAPS)</h3>
+                <p>Empowering students and organizations with AI-based performance prediction and analytics.</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#Student Page">Student Page</a></li>
+                    <li><a href="#Educator Page">Educator Page </a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#"><img src="../static/photos/facebook_logo.png" alt="Facebook"></a>
+                <a href="#"><img src="../static/photos/twitter_logo.png" alt="Twitter"></a>
+                <a href="#"><img src="../static/photos/linkedIn_logo.png" alt="LinkedIn"></a>
+                <a href="#"><img src="../static/photos/instagram_logo.png" alt="Instagram"></a>
+                <a href="#"><img src="../static/photos/gmail_logo.png" alt="Gmail"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Student Performance Prediction. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

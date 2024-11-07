@@ -1,0 +1,234 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../photos/front-bg.jpg'), url('../photos/front-bg3.png');
+    
+}
+
+/* Header Section */
+header {
+    background-color: rgba(9, 23, 34, 0.8); /* Transparent background */
+    color: #fff;
+    padding: 15px 0; /* Reduced padding for better layout */
+    background-image: url('../photos/front-bg3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: fixed; /* Fix header to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header stays on top */
+}
+
+/* Navigation Styling */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo Styling */
+.logo h1 {
+    color:#48b0d1;
+    border-right: 10px solid white;
+    padding-right: 10px;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.nav-links li {
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #62d6e5;
+}
+
+/* Right Side Signup Button */
+.btn-signup {
+    color: white;
+    text-decoration: none;
+    border: 2px double #62d6e5;
+    margin: 10px;
+    border-radius: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: #62d6e5;
+    border-color:  #62d6e5;
+}
+
+/* ****************************************************** upload form ******************************************** */
+
+.container {
+    max-width: 60%;
+    margin-top: 10%;
+    margin-left:20%;
+    padding: 5%;
+    background-color: #070e1867;
+    border: 5px rgba(255, 255, 255, 0.634) dotted;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5%;
+    color: whitesmoke;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%; /* Ensure the form group takes full width */
+    text-align: center; /* Center the label */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    width: 100%; /* Adjust width for better appearance */
+    color: white;
+    padding: 10px;
+    border: 1px solid #48b0d1;
+    border-radius: 5px;
+    display: inline-block; /* Align with center */
+    margin-bottom: 10%;
+}
+
+.btn-submit {
+    width: 100%; /* Match width of the input field */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* Center the button text */
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+/* **************************************************** Footer ***************************************** */
+
+.footer {
+    margin-top: 10%;
+    border-top: 10px solid #48b0d1;
+    background-color: #091722;
+    color: #ccc;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-container {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color:#ccc;
+}
+
+.footer-links {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #62d6e5;
+}
+
+.footer-social {
+    flex: 1;
+    margin-top: 5%;
+}
+
+.footer-social a {
+    margin: 0 10px;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social a:hover img {
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid gray;
+    padding-top: 10px;
+}
