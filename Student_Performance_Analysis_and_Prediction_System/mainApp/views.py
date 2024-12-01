@@ -17,7 +17,6 @@ def student(request):
     return render(request, 'student.html')
 
 
-
 def student_dashboard(request):
     if request.method == 'POST':
         # Helper function to safely convert form input to float
@@ -138,24 +137,58 @@ def student_dashboard(request):
                 elif subject == 'Computer':
                     totalComputerAverage += test_scores[subject]
 
-        # Now divide the subject totals by the number of tests (5)
-        totalEnglishAverage /= 5
-        totalMathsAverage /= 5
-        totalScienceAverage /= 5
-        totalHindiAverage /= 5
-        totalComputerAverage /= 5
+
+        # Below code is written for when user give only 1, 2.. test // for per subject 
+
+        if(test3_Total == 0 and test4_Total ==0 and test5_Total == 0):
+            totalEnglishAverage /= 2
+            totalMathsAverage /= 2
+            totalScienceAverage /= 2
+            totalHindiAverage /= 2
+            totalComputerAverage /= 2
+        elif(test4_Total ==0 and test5_Total == 0):
+            totalEnglishAverage /= 3
+            totalMathsAverage /= 3
+            totalScienceAverage /= 3
+            totalHindiAverage /= 3
+            totalComputerAverage /= 3
+        elif(test5_Total == 0):
+            totalEnglishAverage /= 4
+            totalMathsAverage /= 4
+            totalScienceAverage /= 4
+            totalHindiAverage /= 4
+            totalComputerAverage /= 4
+        else :
+            totalEnglishAverage /= 5
+            totalMathsAverage /= 5
+            totalScienceAverage /= 5
+            totalHindiAverage /= 5
+            totalComputerAverage /= 5
 
         # Divide totalAttendance by the number of subjects (assuming 5 subjects)
         totalAttendance /= 5
         
+        # Below code is written for when user give only 1, 2.. test  // for per test
+        total_percentage = 0
+        if(test2_Total == 0 and test3_Total ==0 and test4_Total == 0 and test5_Total ==0 ):
+            total_percentage = test1_Total / 5
+        elif(test3_Total == 0 and test4_Total ==0 and test5_Total == 0):
+            total_percentage = (test1_Total + test2_Total) / 10
+        elif(test4_Total ==0 and test5_Total == 0):
+            total_percentage = (test1_Total + test2_Total + test3_Total) / 15
+        elif(test5_Total == 0):
+            total_percentage = (test1_Total + test2_Total + test3_Total + test4_Total) / 20
+        else :
+            total_percentage = (test1_Total + test2_Total + test3_Total + test4_Total + test5_Total) / 25
+
         # Prepare input for model prediction using form data
         X_input = np.array([[totalAttendance, 
                              student_data['Study Hours per Day'], 
-                             student_data['Stress Level']]])
+                             student_data['Stress Level'],total_percentage]])
 
-        # Dummy model predictions for now (replace with actual model predictions)
+   
         # Predict Total Percentage using the linear regression model
-        total_percentage = linear_regressor.predict(X_input)[0]
+        Pred_total_percentage = linear_regressor.predict(X_input)[0]
         
         # Predict Pass/Fail using the logistic regression model
         pass_fail = logistic_regressor.predict(X_input)[0]
@@ -202,7 +235,7 @@ def student_dashboard(request):
             'science_Goal': student_data['Goal Score']['Science'],
             'computer_Goal': student_data['Goal Score']['Computer'],
 
-            'total_percentage': total_percentage,
+            'total_percentage': Pred_total_percentage,
             'pass_fail': 'Pass' if pass_fail == 1 else 'Fail',
             'pass_probability': round(pass_probability * 100, 2),  # Convert to percentage
             'fail_probability': round(fail_probability * 100, 2),  # Convert to percentage

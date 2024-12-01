@@ -1,0 +1,101 @@
+Student_ID,Name,Age,Gender,Parental Education Level,Annual Family Income (INR) in Lakh,College Type,Attendance Percentage,Study Hours per Day,Extra-Curricular Activities,Hindi,English,Maths,Science,Computer,Do Online Assignment,Stress Level,Total Percentage,Pass/Fail
+MCI1,Student 1,25,Male,Undergraduate,9,0,77,4,0,1,82,72,83,95,1,-2,66.6,1
+MCI2,Student 2,22,Female,Undergraduate,8,0,30,9,0,100,74,45,81,53,0,-1,70.6,1
+MCI3,Student 3,23,Female,Postgraduate,3,0,80,9,0,72,9,87,97,66,1,-2,66.2,1
+MCI4,Student 4,19,Female,Undergraduate,12,0,79,6,0,73,23,89,36,88,0,-2,61.8,1
+MCI5,Student 5,24,Female,Postgraduate,5,0,95,1,0,85,79,49,76,35,1,2,64.8,1
+MCI6,Student 6,26,Male,Undergraduate,9,0,75,9,1,48,80,37,90,45,0,-2,60.0,1
+MCI7,Student 7,20,Male,Higher Secondary,15,1,80,5,0,17,8,35,5,33,0,-1,19.6,0
+MCI8,Student 8,21,Male,Higher Secondary,10,0,30,7,0,27,53,35,69,44,1,1,45.6,1
+MCI9,Student 9,28,Male,Undergraduate,15,0,47,8,0,30,3,79,12,48,1,0,34.4,0
+MCI10,Student 10,18,Male,Postgraduate,15,0,75,4,1,40,97,67,27,1,1,-1,46.4,1
+MCI11,Student 11,30,Female,Higher Secondary,12,0,67,7,0,15,26,53,41,100,0,1,47.0,1
+MCI12,Student 12,30,Female,Undergraduate,10,0,78,2,1,14,84,32,100,16,1,-1,49.2,1
+MCI13,Student 13,23,Female,Higher Secondary,3,1,72,5,1,73,92,77,82,7,0,-1,66.2,1
+MCI14,Student 14,22,Female,Undergraduate,15,1,68,5,0,60,49,8,55,31,0,2,40.6,1
+MCI15,Student 15,30,Female,Higher Secondary,4,1,90,10,1,14,31,12,87,33,1,0,35.4,0
+MCI16,Student 16,22,Male,Higher Secondary,13,1,93,7,1,2,29,19,90,56,0,1,39.2,0
+MCI17,Student 17,28,Female,Postgraduate,13,1,89,7,1,96,98,86,52,35,1,1,73.4,1
+MCI18,Student 18,21,Male,Undergraduate,3,1,42,2,1,85,91,75,24,56,1,0,66.2,1
+MCI19,Student 19,27,Male,Undergraduate,3,1,36,10,1,75,31,94,20,43,0,1,52.6,1
+MCI20,Student 20,25,Female,Higher Secondary,3,0,95,10,1,58,46,61,34,24,0,-2,44.6,1
+MCI21,Student 21,20,Male,Postgraduate,14,0,72,7,0,6,12,14,46,85,0,0,32.6,0
+MCI22,Student 22,19,Female,Higher Secondary,10,0,38,2,0,27,5,82,47,87,0,2,49.6,1
+MCI23,Student 23,25,Male,Postgraduate,4,1,68,10,1,19,94,93,40,45,0,1,58.2,1
+MCI24,Student 24,25,Female,Undergraduate,4,1,34,8,0,97,0,4,75,91,0,2,53.4,1
+MCI25,Student 25,23,Male,Undergraduate,4,0,68,7,0,21,57,56,24,91,0,-1,49.8,1
+MCI26,Student 26,30,Female,Postgraduate,14,0,67,7,0,55,6,42,85,82,1,2,54.0,1
+MCI27,Student 27,28,Male,Higher Secondary,8,1,91,7,0,26,22,94,79,31,1,2,50.4,1
+MCI28,Student 28,28,Male,Higher Secondary,4,0,79,6,0,26,9,5,69,41,1,-2,30.0,0
+MCI29,Student 29,25,Female,Undergraduate,11,0,62,2,1,24,49,68,82,0,0,2,44.6,1
+MCI30,Student 30,27,Male,Postgraduate,3,1,34,10,0,62,91,86,63,60,0,-1,72.4,1
+MCI31,Student 31,21,Male,Undergraduate,15,0,98,10,1,4,47,95,50,71,1,0,53.4,1
+MCI32,Student 32,30,Male,Higher Secondary,10,0,78,7,1,72,82,58,90,81,0,2,76.6,1
+MCI33,Student 33,23,Female,Postgraduate,2,1,95,2,0,65,28,83,6,62,0,-1,48.8,1
+MCI34,Student 34,27,Female,Undergraduate,2,0,47,6,1,5,13,55,0,5,0,0,15.6,0
+MCI35,Student 35,23,Female,Undergraduate,9,0,76,1,1,69,60,99,28,88,0,0,68.8,1
+MCI36,Student 36,22,Male,Postgraduate,6,1,30,5,0,80,96,37,90,48,0,2,70.2,1
+MCI37,Student 37,25,Male,Undergraduate,5,1,42,10,0,70,82,73,30,60,0,-2,63.0,1
+MCI38,Student 38,28,Female,Postgraduate,7,1,35,1,1,64,45,35,32,35,0,-2,42.2,1
+MCI39,Student 39,29,Male,Higher Secondary,13,1,71,1,0,40,1,46,51,18,1,-2,31.2,0
+MCI40,Student 40,30,Female,Postgraduate,6,1,91,4,1,96,17,1,47,47,1,0,41.6,1
+MCI41,Student 41,24,Male,Undergraduate,8,0,48,5,0,64,25,53,57,0,0,0,39.8,0
+MCI42,Student 42,21,Male,Undergraduate,4,0,81,10,0,57,23,36,55,45,0,1,43.2,1
+MCI43,Student 43,22,Female,Undergraduate,12,1,55,10,0,72,47,52,55,57,0,2,56.6,1
+MCI44,Student 44,29,Female,Undergraduate,15,0,70,5,1,44,62,72,4,68,0,0,50.0,1
+MCI45,Student 45,23,Male,Postgraduate,14,0,73,6,0,98,76,6,53,94,1,-2,65.4,1
+MCI46,Student 46,28,Male,Undergraduate,2,1,65,7,0,82,75,65,61,74,1,1,71.4,1
+MCI47,Student 47,26,Male,Undergraduate,3,0,78,2,1,14,63,94,75,86,0,-1,66.4,1
+MCI48,Student 48,28,Female,Postgraduate,10,1,97,3,0,85,78,64,6,19,1,-1,50.4,1
+MCI49,Student 49,22,Female,Higher Secondary,13,0,94,6,0,46,33,64,20,23,1,0,37.2,0
+MCI50,Student 50,26,Female,Undergraduate,14,1,67,3,0,88,5,48,61,88,0,0,58.0,1
+MCI51,Student 51,30,Male,Higher Secondary,4,0,78,4,1,95,19,25,11,28,0,-1,35.6,0
+MCI52,Student 52,27,Male,Higher Secondary,2,0,44,5,1,4,91,5,28,94,0,0,44.4,1
+MCI53,Student 53,25,Female,Higher Secondary,7,0,39,9,1,98,68,9,78,81,1,0,66.8,1
+MCI54,Student 54,20,Female,Undergraduate,2,0,91,1,1,95,73,68,1,42,0,-2,55.8,1
+MCI55,Student 55,21,Female,Higher Secondary,14,0,71,5,0,88,9,56,14,95,1,-1,52.4,1
+MCI56,Student 56,22,Male,Higher Secondary,7,1,39,10,0,100,36,5,12,75,0,0,45.6,1
+MCI57,Student 57,25,Female,Postgraduate,9,0,65,4,1,10,41,0,10,91,0,-2,30.4,0
+MCI58,Student 58,25,Female,Higher Secondary,5,0,51,7,0,58,77,41,29,32,1,2,47.4,1
+MCI59,Student 59,28,Female,Higher Secondary,12,0,44,8,1,48,17,78,55,84,1,-1,56.4,1
+MCI60,Student 60,25,Male,Undergraduate,2,1,59,5,0,24,85,86,28,65,0,2,57.6,1
+MCI61,Student 61,22,Male,Postgraduate,10,0,94,8,0,22,71,37,71,0,1,0,40.2,1
+MCI62,Student 62,27,Female,Higher Secondary,14,0,76,8,1,25,67,97,62,88,0,-1,67.8,1
+MCI63,Student 63,24,Male,Undergraduate,6,0,57,5,1,97,0,59,86,35,0,0,55.4,1
+MCI64,Student 64,29,Female,Higher Secondary,13,1,64,2,0,1,44,93,46,100,0,-2,56.8,1
+MCI65,Student 65,22,Male,Undergraduate,4,0,51,8,1,94,22,9,47,27,1,1,39.8,0
+MCI66,Student 66,28,Male,Postgraduate,9,0,95,4,1,45,82,22,57,89,1,1,59.0,1
+MCI67,Student 67,28,Female,Higher Secondary,8,0,83,9,0,41,55,45,54,3,1,0,39.6,0
+MCI68,Student 68,18,Male,Postgraduate,8,1,39,9,0,17,76,32,24,10,0,-1,31.8,0
+MCI69,Student 69,26,Female,Higher Secondary,11,1,53,5,0,29,6,69,86,96,1,-2,57.2,1
+MCI70,Student 70,26,Female,Higher Secondary,8,0,80,8,1,80,90,29,68,46,0,2,62.6,1
+MCI71,Student 71,20,Female,Postgraduate,14,1,35,1,0,69,37,40,63,54,0,2,52.6,1
+MCI72,Student 72,29,Male,Higher Secondary,2,0,48,8,1,20,82,26,90,79,1,1,59.4,1
+MCI73,Student 73,18,Female,Undergraduate,9,1,63,7,0,30,82,36,20,80,1,-1,49.6,1
+MCI74,Student 74,26,Female,Higher Secondary,4,0,52,2,1,84,14,86,67,70,1,-1,64.2,1
+MCI75,Student 75,28,Female,Higher Secondary,6,0,66,6,0,78,5,2,24,41,0,-1,30.0,0
+MCI76,Student 76,18,Female,Undergraduate,15,1,30,3,1,28,85,39,94,6,0,1,50.4,1
+MCI77,Student 77,26,Male,Undergraduate,7,0,42,2,1,42,94,28,55,46,1,1,53.0,1
+MCI78,Student 78,19,Male,Higher Secondary,10,1,60,9,0,62,52,34,87,29,1,-2,52.8,1
+MCI79,Student 79,26,Male,Postgraduate,15,1,61,8,1,33,58,36,17,22,0,0,33.2,0
+MCI80,Student 80,28,Female,Postgraduate,9,0,67,2,0,39,26,55,82,35,1,-1,47.4,1
+MCI81,Student 81,24,Female,Undergraduate,14,1,38,4,0,60,12,1,79,84,0,-1,47.2,1
+MCI82,Student 82,27,Female,Postgraduate,5,1,36,5,0,76,98,89,97,48,1,1,81.6,1
+MCI83,Student 83,29,Male,Postgraduate,4,1,39,4,1,40,100,48,81,33,0,0,60.4,1
+MCI84,Student 84,21,Male,Postgraduate,5,0,96,6,1,83,61,40,30,26,0,-2,48.0,1
+MCI85,Student 85,26,Female,Higher Secondary,7,0,77,9,0,79,51,24,10,89,1,1,50.6,1
+MCI86,Student 86,19,Male,Higher Secondary,3,1,49,2,0,14,9,66,77,32,1,1,39.6,0
+MCI87,Student 87,22,Male,Undergraduate,12,0,86,8,1,31,90,80,10,3,0,-1,42.8,1
+MCI88,Student 88,28,Female,Undergraduate,8,1,60,1,1,88,13,39,13,24,1,2,35.4,0
+MCI89,Student 89,20,Male,Higher Secondary,12,1,66,9,1,55,95,48,44,31,1,1,54.6,1
+MCI90,Student 90,29,Female,Undergraduate,9,1,77,10,0,68,43,27,56,32,0,1,45.2,1
+MCI91,Student 91,19,Female,Postgraduate,5,0,73,4,1,75,5,10,24,12,0,2,25.2,0
+MCI92,Student 92,22,Female,Postgraduate,5,1,48,7,1,48,27,29,30,16,1,-1,30.0,0
+MCI93,Student 93,20,Male,Postgraduate,4,1,54,2,1,97,51,96,35,96,0,-2,75.0,1
+MCI94,Student 94,24,Female,Postgraduate,4,1,85,9,1,99,24,29,17,35,1,-2,40.8,1
+MCI95,Student 95,25,Male,Higher Secondary,6,1,95,7,1,35,99,76,63,0,0,2,54.6,1
+MCI96,Student 96,29,Female,Higher Secondary,7,0,97,2,1,98,70,41,26,30,1,-2,53.0,1
+MCI97,Student 97,18,Female,Postgraduate,2,0,52,8,1,19,79,85,90,90,1,2,72.6,1
+MCI98,Student 98,30,Male,Higher Secondary,5,0,47,8,1,15,35,73,1,30,0,-1,30.8,0
+MCI99,Student 99,24,Female,Undergraduate,4,0,69,3,0,38,83,84,86,68,0,-1,71.8,1
+MCI100,Student 100,30,Male,Undergraduate,3,0,99,3,0,25,93,63,88,39,1,1,61.6,1
