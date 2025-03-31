@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import joblib
 import numpy as np
+import pandas as pd
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -91,6 +92,7 @@ def student_dashboard(request):
 
         # Initialize variables for totals and averages
         totalAttendance = 0
+
         totalEnglishAverage = 0
         totalMathsAverage = 0
         totalScienceAverage = 0
@@ -200,6 +202,128 @@ def student_dashboard(request):
         pass_probability = pass_fail_probabilities[1]  # Probability of passing (class 1)
         fail_probability = pass_fail_probabilities[0]  # Probability of failing (class 0)
 
+
+        # Recommendation System --------------------------------------------------------------------------
+
+        df = pd.read_csv('subjects_images_dataset.csv')
+
+        english_books = []
+        hindi_books= []
+        maths_books=[]
+        science_books=[]
+        computer_books=[]
+
+        if(totalEnglishAverage>=60) :
+            english_books = df.iloc[[0, 1, 2], [1]].values.flatten().tolist()
+        elif(totalEnglishAverage>=45):
+            english_books = df.iloc[[3, 4, 5], [1]].values.flatten().tolist()
+        elif(totalEnglishAverage<45):
+            english_books = df.iloc[[7, 8, 9], [1]].values.flatten().tolist()
+
+        if(totalHindiAverage>=60) :
+            hindi_books = df.iloc[[0, 1, 2], [2]].values.flatten().tolist()
+        elif(totalEnglishAverage>=45):
+            hindi_books = df.iloc[[3, 4, 5], [2]].values.flatten().tolist()
+        elif(totalEnglishAverage<45):
+            hindi_books = df.iloc[[7, 8, 9], [2]].values.flatten().tolist()
+
+        if(totalMathsAverage>=60) :
+            maths_books = df.iloc[[0, 1, 2], [3]].values.flatten().tolist()
+        elif(totalEnglishAverage>=45):
+            maths_books = df.iloc[[3, 4, 5], [3]].values.flatten().tolist()
+        elif(totalEnglishAverage<45):
+            maths_books = df.iloc[[7, 8, 9], [3]].values.flatten().tolist()
+
+        if(totalScienceAverage>=60) :
+            science_books = df.iloc[[0, 1, 2], [4]].values.flatten().tolist()
+        elif(totalEnglishAverage>=45):
+            science_books = df.iloc[[3, 4, 5], [4]].values.flatten().tolist()
+        elif(totalEnglishAverage<45):
+            science_books = df.iloc[[7, 8, 9], [4]].values.flatten().tolist()
+
+        if(totalComputerAverage>=60) :
+            computer_books = df.iloc[[0, 1, 2], [5]].values.flatten().tolist()
+        elif(totalEnglishAverage>=45):
+            computer_books = df.iloc[[3, 4, 5], [5]].values.flatten().tolist()
+        elif(totalEnglishAverage<45):
+            computer_books = df.iloc[[7, 8, 9], [5]].values.flatten().tolist()
+
+        english_resources = {
+            "Books" : english_books,
+            "YouTube": [
+                "https://www.youtube.com/channel/UCyDXMl-ru1F--NPCtO7aDig",
+                "https://www.youtube.com/user/bbclearningenglish"
+            ],
+            "Websites": [
+                "https://www.bbc.co.uk/learningenglish",
+                "https://www.duolingo.com/"
+            ],
+            "Courses": [
+                "https://www.coursera.org/learn/careerdevelopment"
+            ]
+        }
+
+        hindi_resources = {
+            "Books" : hindi_books,
+            "YouTube": [
+                "https://www.youtube.com/@MagnetBrainsEducation",
+                "https://www.youtube.com/@Class10HindiMedium"
+            ],
+            "Websites": [
+                "https://nitin-gupta.com/most-important-general-hindi-notes/#google_vignette",
+                "https://study91.co.in/"
+            ],
+            "Courses": [
+                "https://www.udemy.com/topic/hindi/?srsltid=AfmBOopqyGCltYibfEjs58I5XShy1O1h6FKsbD-8ywv4meq1LFjhlskS"
+            ]
+        }
+
+        maths_resources = {
+            "Books" : maths_books,
+            "YouTube": [
+                "https://www.youtube.com/@MariosMathTutoringr",
+                "https://www.youtube.com/c/numberphile"
+            ],
+            "Websites": [
+                "https://www.khanacademy.org/",
+                "https://www.brilliant.org/"
+            ],
+            "Courses": [
+                "https://www.coursera.org/learn/mathematical-thinking"
+            ]
+        }
+
+        science_resources = {
+            "Books" : science_books,
+            "YouTube": [
+                "https://www.youtube.com/c/ScienceChannel",
+                "https://www.youtube.com/c/AsapSCIENCE"
+            ],
+            "Websites": [
+                "https://www.khanacademy.org/",
+                "https://education.nationalgeographic.org/"
+            ],
+            "Courses": [
+                "https://www.edx.org/course/introduction-to-biology-the-secret-of-life"
+            ]
+        }
+
+        computer_resources = {
+            "Books" : computer_books,
+            "YouTube": [
+                "https://www.youtube.com/@freecodecamp",
+                "https://www.youtube.com/c/TheNetNinja"
+            ],
+            "Websites": [
+                "https://www.codecademy.com/",
+                "https://www.freecodecamp.org/"
+            ],
+            "Courses": [
+                "https://www.coursera.org/specializations/introduction-computer-science-programming"
+            ]
+        }
+
+
         # Prepare data to send to the template
         context = {
             'Name': student_data['Name'],
@@ -239,6 +363,13 @@ def student_dashboard(request):
             'pass_fail': 'Pass' if pass_fail == 1 else 'Fail',
             'pass_probability': round(pass_probability * 100, 2),  # Convert to percentage
             'fail_probability': round(fail_probability * 100, 2),  # Convert to percentage
+
+            'english_resources' : english_resources,
+            'hindi_resources' : hindi_resources,
+            'maths_resources' : maths_resources,
+            'science_resources' : science_resources,
+            'computer_resources' : computer_resources,
+
        }
 
         return render(request, 'student_dashboard.html', context)
